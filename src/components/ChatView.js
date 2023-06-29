@@ -57,10 +57,10 @@ const ChatView = () => {
     e.preventDefault();
 
     const key = window.localStorage.getItem('api-key');
-    if (!key) {
-      setModalOpen(true);
-      return;
-    }
+    // if (!key) {
+    //   setModalOpen(true);
+    //   return;
+    // }
 
     const filter = new Filter();
     const cleanPrompt = filter.isProfane(formValue)
@@ -70,6 +70,8 @@ const ChatView = () => {
     const newMsg = cleanPrompt;
     const aiModel = selected;
 
+    console.log(formValue);
+    
     setThinking(true);
     setFormValue('');
     updateMessage(newMsg, false, aiModel);
@@ -79,6 +81,7 @@ const ChatView = () => {
       if (aiModel === options[0]) {
         const response = await davinci(cleanPrompt, key);
         const data = response.data.choices[0].message.content;
+        console.log('res', data);
         data && updateMessage(data, true, aiModel);
       } else {
         const response = await dalle(cleanPrompt, key);
@@ -148,9 +151,9 @@ const ChatView = () => {
           </button>
         </div>
       </form>
-      <Modal title='Setting' modalOpen={modalOpen} setModalOpen={setModalOpen}>
+      {/* <Modal title='Setting' modalOpen={modalOpen} setModalOpen={setModalOpen}>
         <Setting modalOpen={modalOpen} setModalOpen={setModalOpen} />
-      </Modal>
+      </Modal> */}
     </div>
   );
 };
