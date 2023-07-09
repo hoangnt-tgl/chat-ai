@@ -77,7 +77,8 @@ const ChatView = () => {
     try {
       if (aiModel === options[0]) {
         const response = await davinci(cleanPrompt, key);
-        const data = response.data.choices[0].message.content;
+        const data = response;
+        // const data = response.data.choices[0].message.content;
         console.log('res', data);
         data && updateMessage(data, true, aiModel);
       } else {

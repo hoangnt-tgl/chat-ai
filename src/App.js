@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import Modal from './components/Modal';
 import Setting from './components/Setting';
 
-// const setKey = await window.localStorage.setItem('api-key', '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');
 
 const App = () => {
   const [modalOpen, setModalOpen] = useState(false);
