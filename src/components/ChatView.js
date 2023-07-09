@@ -56,12 +56,11 @@ const ChatView = () => {
   const sendMessage = async (e) => {
     e.preventDefault();
 
-    const key = window.localStorage.getItem('api-key');
+    const key = process.env.REACT_APP_API_KEY;
     // if (!key) {
     //   setModalOpen(true);
     //   return;
     // }
-
     const filter = new Filter();
     const cleanPrompt = filter.isProfane(formValue)
       ? filter.clean(formValue)
@@ -69,8 +68,6 @@ const ChatView = () => {
 
     const newMsg = cleanPrompt;
     const aiModel = selected;
-
-    console.log(formValue);
     
     setThinking(true);
     setFormValue('');

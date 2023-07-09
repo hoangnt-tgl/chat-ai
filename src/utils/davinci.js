@@ -10,8 +10,15 @@ export const davinci = async (prompt, key) => {
   const openai = new OpenAIApi(configuration);
   let conversation = window.localStorage.getItem('conversation');
   const conversationArray = JSON.parse(conversation);
-  console.log(conversationArray);
+
+  const len = conversationArray.length;
+  if(len>=6){
+    conversationArray.shift();
+    conversationArray.shift();
+  }
+  
   conversationArray.push({ role: 'user', content: `${prompt}?` });
+ 
 
   const response = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',

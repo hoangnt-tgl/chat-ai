@@ -10,15 +10,14 @@ import Setting from './components/Setting';
 const App = () => {
   const [modalOpen, setModalOpen] = useState(false);
   let conversation = [
-      {
-        role: 'system',
-        content:
-          "you're an a AI assistant that replies to all my questions in markdown format.",
-      },
-      { role: 'user', content: 'hi' },
-      { role: 'assistant', content: 'Hi! How can I help you?' },
+      // {
+      //   role: 'system',
+      //   content:
+      //     "you're an a AI assistant that replies to all my questions in markdown format.",
+      // },
+      // { role: 'user', content: 'hi' },
+      // { role: 'assistant', content: 'Hi! How can I help you?' },
   ];
-  window.localStorage.setItem('api-key','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');
   window.localStorage.setItem('conversation',JSON.stringify(conversation));
   // useEffect(() => {
   //   const apiKey = window.localStorage.getItem('api-key');
