@@ -17,7 +17,8 @@ export const davinci = async (prompt, key) => {
   }
   
   conversationArray.push({ role: 'user', content: `${prompt}?` });
- 
+  // const id = window.localStorage.getItem('id');
+
  
   const request = {
     model: 'gpt-3.5-turbo',
@@ -28,7 +29,11 @@ export const davinci = async (prompt, key) => {
     frequency_penalty: 0.5,
     presence_penalty: 0.2,
   }
-  console.log(request);
+  // if(id === undefined? false:true){
+  //   request.id = id;
+  //   console.log(request.json);
+  // }
+  // console.log(request.json);
   const response = await fetch('http://localhost:3001/api/chat', {
          method: 'POST',
          headers: {
@@ -37,11 +42,12 @@ export const davinci = async (prompt, key) => {
          body: JSON.stringify(request),
   }) 
   .then(response => response.json())
+  .then(data => JSON.parse(data))
   .then(data => {
-    console.log(data);
     conversationArray.push({ role: 'assistant', content: data});
     console.log("conversationArray",conversationArray);
     window.localStorage.setItem('conversation', JSON.stringify(conversationArray));
+    // window.localStorage.setItem('id',data);
     return data;
   })
   .catch(error => {
@@ -56,4 +62,5 @@ export const davinci = async (prompt, key) => {
   // });
   // const resString = JSON.stringify(response);
   // return resString;
+  return response;
 };

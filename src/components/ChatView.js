@@ -73,7 +73,6 @@ const ChatView = () => {
     setFormValue('');
     updateMessage(newMsg, false, aiModel);
 
-    console.log(selected);
     try {
       if (aiModel === options[0]) {
         const response = await davinci(cleanPrompt, key);
