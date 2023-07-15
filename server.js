@@ -1,8 +1,8 @@
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import { Configuration, OpenAIApi } from 'openai';
-import dotenv from 'dotenv';
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+import { Configuration, OpenAIApi } from "openai";
+import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
@@ -13,16 +13,17 @@ const key2 = process.env.KEY_2;
 const key3 = process.env.KEY_3;
 let arrayKey = [key1, key2, key3];
 
-app.post('/api/chat',async (req, res) => {
+app.post("/api/chat", async (req, res) => {
+  try {
     const key = arrayKey[0];
     console.log(key);
     const configuration = new Configuration({
-        apiKey: key,
+      apiKey: key,
     });
-    
-    delete configuration.baseOptions.headers['User-Agent'];
-    
-    const openai = new OpenAIApi(configuration); 
+
+    delete configuration.baseOptions.headers["User-Agent"];
+
+    const openai = new OpenAIApi(configuration);
     const request = req.body;
     // console.log(request);
     const response = await openai.createChatCompletion(request);
@@ -34,11 +35,14 @@ app.post('/api/chat',async (req, res) => {
     // console.log(data);
     // const resData = JSON.stringify(data);
     const resData = JSON.stringify(response.data.choices[0].message.content);
-                                    // id : response.data.choices[0].id });
+    // id : response.data.choices[0].id });
     console.log(resData);
     arrayKey.shift();
     arrayKey.push(key);
     res.json(resData);
+  } catch (error) {
+    res.json(error.message);
+  }
 });
 
 const port = process.env.PORT || 3000;
