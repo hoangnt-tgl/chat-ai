@@ -34,7 +34,7 @@ export const davinci = async (prompt, key) => {
   //   console.log(request.json);
   // }
   // console.log(request.json);
-  const response = await fetch('http://112.213.89.194:3030/api/chat', {
+  const response = await fetch('https://chat-free-api-e253bafc1df6.herokuapp.com/api/chat', {
          method: 'POST',
          headers: {
            'Content-Type': 'application/json',
