@@ -6,9 +6,9 @@ import { Configuration, OpenAIApi } from 'openai';
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-const key1 = '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';
-const key2 = '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';
-const key3 = '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';
+const key1 = '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';
+const key2 = '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';
+const key3 = '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';
 let arrayKey = [key1, key2, key3];
 
 app.post('/api/chat',async (req, res) => {
