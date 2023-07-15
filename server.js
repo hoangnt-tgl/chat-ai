@@ -41,7 +41,7 @@ app.post('/api/chat',async (req, res) => {
     res.json(resData);
 });
 
-const port = 3001; // Choose a port number
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
